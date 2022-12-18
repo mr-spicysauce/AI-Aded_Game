@@ -1,0 +1,17 @@
+[gd_resource type="SpatialMaterial" format=2]
+
+[resource]
+flags_transparent = true
+albedo_color = Color( 0.603922, 0.933333, 0.960784, 0.611765 )
+metallic = 1.0
+roughness = 0.07
+depth_enabled = true
+depth_scale = 0.05
+depth_deep_parallax = true
+depth_min_layers = 8
+depth_max_layers = 32
+depth_flip_tangent = false
+depth_flip_binormal = false
+refraction_enabled = true
+refraction_scale = 0.05
+refraction_texture_channel = 0

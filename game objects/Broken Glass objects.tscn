@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Imported objects/Broken Glass.glb" type="PackedScene" id=1]
+
+[node name="Broken Glass" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
+
+[node name="Cube_cell" parent="." index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0587531, 2.59552, 5.93267 )
+
+[node name="Cube_cell004" parent="." index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0621913, 2.58579, -5.1588 )
+
+[node name="Cube_cell005" parent="." index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0639684, 0.284513, 2.4522 )
+
+[node name="Cube_cell007" parent="." index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0639684, 2.07307, 3.93833 )
+
+[node name="Cube_cell009" parent="." index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0639684, 0.709988, -3.46162 )
+
+[node name="Cube_cell002_cell" parent="." index="5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0644119, 5.02461, 0.515113 )
+
+[node name="Cube_cell002_cell001" parent="." index="6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0697494, 6.24429, -0.822943 )
+
+[node name="Cube_cell002_cell002" parent="." index="7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0639684, 3.47567, -2.24079 )
+
+[node name="Cube_cell008_cell" parent="." index="8"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0639684, 0.879537, -0.451641 )
+
+[node name="Cube_cell008_cell001" parent="." index="9"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0689973, 2.66672, 1.43764 )
+
+[node name="Cube_cell003_cell001" parent="." index="10"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0535719, 4.31427, 3.41769 )
+
+[node name="Cube_cell003_cell002" parent="." index="11"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0625649, 4.73667, 5.10753 )
+
+[node name="Cube_cell006_cell" parent="." index="12"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0687877, 6.6195, -4.54001 )
+
+[node name="Cube_cell006_cell001" parent="." index="13"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0710759, 6.56078, -2.78279 )
+
+[node name="Cube_cell001_cell" parent="." index="14"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0639684, 6.8646, 2.14842 )
+
+[node name="Cube_cell001_cell001" parent="." index="15"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0513578, 6.85039, 3.85093 )

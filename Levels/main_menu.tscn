@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Main menu.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Globals.gd" type="Script" id=2]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.943909
+margin_top = -0.943863
+margin_right = -0.943909
+margin_bottom = -0.943848
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="StartGameButton" type="Button" parent="."]
+margin_left = 345.724
+margin_top = 146.832
+margin_right = 572.724
+margin_bottom = 205.832
+text = "Start Testing.tscn"
+
+[node name="QuitGameButton" type="Button" parent="."]
+margin_left = 342.219
+margin_top = 312.697
+margin_right = 573.219
+margin_bottom = 374.697
+text = "Quit"
+
+[node name="Globals" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="OpenTestLvl1" type="Button" parent="."]
+margin_left = 352.224
+margin_top = 228.607
+margin_right = 572.224
+margin_bottom = 287.607
+text = "TempLvl1.tscn"

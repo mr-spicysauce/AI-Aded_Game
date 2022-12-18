@@ -1,0 +1,707 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Materials/TestingBlue.tres" type="Material" id=2]
+[ext_resource path="res://Materials/TestingOrange.tres" type="Material" id=3]
+[ext_resource path="res://game objects/Glass pain.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Building blocks/10x10x10StaticBody.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Building blocks/2x6x2StaticBody.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Building blocks/Ladder 10high.tscn" type="PackedScene" id=7]
+
+[sub_resource type="BoxShape" id=5]
+
+[sub_resource type="CubeMesh" id=4]
+material = ExtResource( 3 )
+
+[sub_resource type="BoxShape" id=10]
+
+[sub_resource type="CubeMesh" id=8]
+material = ExtResource( 2 )
+
+[node name="Main" type="Spatial"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.81, 3 )
+
+[node name="hold all static objects" type="Node" parent="."]
+
+[node name="wall" type="StaticBody" parent="hold all static objects"]
+transform = Transform( 1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 17, 8, 24 )
+
+[node name="CollisionShape" type="CollisionShape" parent="hold all static objects/wall"]
+transform = Transform( 20, 0, 0, 0, 10, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 5 )
+
+[node name="box2" type="MeshInstance" parent="hold all static objects/wall/CollisionShape"]
+mesh = SubResource( 4 )
+skeleton = NodePath("../../../..")
+material/0 = null
+
+[node name="wall2" type="StaticBody" parent="hold all static objects"]
+transform = Transform( 1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 45.4169, 12.3337, 4.34886 )
+
+[node name="CollisionShape" type="CollisionShape" parent="hold all static objects/wall2"]
+transform = Transform( 20, 0, 0, 0, 10, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 5 )
+
+[node name="box2" type="MeshInstance" parent="hold all static objects/wall2/CollisionShape"]
+mesh = SubResource( 4 )
+skeleton = NodePath("../../../..")
+material/0 = null
+
+[node name="wall3" type="StaticBody" parent="hold all static objects"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 70.1579, 18.9746, 25.0646 )
+
+[node name="CollisionShape" type="CollisionShape" parent="hold all static objects/wall3"]
+transform = Transform( 20, 0, 0, 0, 9.65926, -0.258819, 0, 2.58819, 0.965926, 0, -4.49461, 0 )
+shape = SubResource( 5 )
+
+[node name="box2" type="MeshInstance" parent="hold all static objects/wall3/CollisionShape"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0965924, -0.25882 )
+mesh = SubResource( 4 )
+skeleton = NodePath("../../../..")
+material/0 = null
+
+[node name="floor" type="StaticBody" parent="hold all static objects"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="hold all static objects/floor"]
+transform = Transform( 100, 0, 0, 0, 0.25, 0, 0, 0, 100, 0, 0, 0 )
+shape = SubResource( 10 )
+
+[node name="MeshInstance" type="MeshInstance" parent="hold all static objects/floor/CollisionShape"]
+mesh = SubResource( 8 )
+skeleton = NodePath("")
+material/0 = null
+
+[node name="10x10x10StaticBody" parent="hold all static objects" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 107, 2, 16 )
+
+[node name="2x6x2StaticBody" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 99, 11, 8 )
+
+[node name="2x6x2StaticBody2" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 99, 11, 24 )
+
+[node name="2x6x2StaticBody3" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 99, 21, 10 )
+
+[node name="2x6x2StaticBody4" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 71, -4, -27 )
+
+[node name="2x6x2StaticBody5" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 55, -4, -27 )
+
+[node name="2x6x2StaticBody6" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 57, 5.97146, -27 )
+
+[node name="2x6x2StaticBody7" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 55, -4, -27 )
+
+[node name="2x6x2StaticBody8" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 39, -4, -27 )
+
+[node name="2x6x2StaticBody9" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 41, 5.97146, -27 )
+
+[node name="Glass pain9" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 47, -1, -25.2 )
+
+[node name="2x6x2StaticBody10" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 71, 6, -27 )
+
+[node name="2x6x2StaticBody11" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 57, 15.9715, -27 )
+
+[node name="2x6x2StaticBody12" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 6, -27 )
+
+[node name="2x6x2StaticBody13" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 6, -27 )
+
+[node name="2x6x2StaticBody14" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 41, 15.9715, -27 )
+
+[node name="Glass pain10" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 47, 9, -25.2 )
+
+[node name="Glass pain11" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 63, 9, -25.2 )
+
+[node name="2x6x2StaticBody15" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 71, 15, -27 )
+
+[node name="2x6x2StaticBody16" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 57, 24.9715, -27 )
+
+[node name="2x6x2StaticBody17" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 15, -27 )
+
+[node name="2x6x2StaticBody18" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 15, -27 )
+
+[node name="2x6x2StaticBody19" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 41, 24.9715, -27 )
+
+[node name="Glass pain12" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 47, 18, -25.2 )
+
+[node name="Glass pain13" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 63, 18, -25.2 )
+
+[node name="2x6x2StaticBody20" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 39.9, -4, -27.1 )
+
+[node name="2x6x2StaticBody21" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 39.9, 5.97146, -41.1 )
+
+[node name="2x6x2StaticBody22" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 39.9, -4, -43.1 )
+
+[node name="2x6x2StaticBody23" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 39.9, -4, -59.1 )
+
+[node name="2x6x2StaticBody24" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 39.9, 5.97146, -57.1 )
+
+[node name="Glass pain14" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 38.1, -1, -51.1 )
+
+[node name="2x6x2StaticBody25" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 39.9, 6, -27.1 )
+
+[node name="2x6x2StaticBody26" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 39.9, 15.9715, -41.1 )
+
+[node name="2x6x2StaticBody27" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 39.9, 6, -43.1 )
+
+[node name="2x6x2StaticBody28" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 39.9, 6, -59.1 )
+
+[node name="2x6x2StaticBody29" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 39.9, 15.9715, -57.1 )
+
+[node name="Glass pain15" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 38.1, 9, -51.1 )
+
+[node name="Glass pain16" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 38.1, 9, -35.1 )
+
+[node name="2x6x2StaticBody30" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 39.9, 15, -27.1 )
+
+[node name="2x6x2StaticBody31" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 39.9, 24.9715, -41.1 )
+
+[node name="2x6x2StaticBody32" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 39.9, 15, -43.1 )
+
+[node name="2x6x2StaticBody33" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 39.9, 15, -59.1 )
+
+[node name="2x6x2StaticBody34" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 39.9, 24.9715, -57.1 )
+
+[node name="Glass pain17" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 38.1, 18, -51.1 )
+
+[node name="Glass pain18" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 38.1, 18, -35.1 )
+
+[node name="Glass pain19" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 38.1, -1, -35.1 )
+
+[node name="2x6x2StaticBody35" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 38.9, -4, -27.1 )
+
+[node name="2x6x2StaticBody36" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 38.9, 5.97146, -41.1 )
+
+[node name="2x6x2StaticBody37" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 38.9, -4, -43.1 )
+
+[node name="2x6x2StaticBody38" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 38.9, -4, -59.1 )
+
+[node name="2x6x2StaticBody39" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 38.9, 5.97146, -57.1 )
+
+[node name="Glass pain20" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 37.1, -1, -51.1 )
+
+[node name="2x6x2StaticBody40" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 38.9, 6, -27.1 )
+
+[node name="2x6x2StaticBody41" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 38.9, 15.9715, -41.1 )
+
+[node name="2x6x2StaticBody42" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 38.9, 6, -43.1 )
+
+[node name="2x6x2StaticBody43" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 38.9, 6, -59.1 )
+
+[node name="2x6x2StaticBody44" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 38.9, 15.9715, -57.1 )
+
+[node name="Glass pain21" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 37.1, 9, -51.1 )
+
+[node name="Glass pain22" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 37.1, 9, -35.1 )
+
+[node name="2x6x2StaticBody45" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 38.9, 15, -27.1 )
+
+[node name="2x6x2StaticBody46" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 38.9, 24.9715, -41.1 )
+
+[node name="2x6x2StaticBody47" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 38.9, 15, -43.1 )
+
+[node name="2x6x2StaticBody48" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 38.9, 15, -59.1 )
+
+[node name="2x6x2StaticBody49" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 38.9, 24.9715, -57.1 )
+
+[node name="Glass pain23" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 37.1, 18, -51.1 )
+
+[node name="Glass pain24" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 37.1, 18, -35.1 )
+
+[node name="Glass pain25" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 37.1, -1, -35.1 )
+
+[node name="2x6x2StaticBody50" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 39, -4, -59.2 )
+
+[node name="2x6x2StaticBody51" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 4.37114e-08, -1, 8.74228e-08, -1, -4.37114e-08, 0, 3.82137e-15, -8.74228e-08, -1, 53, 5.97146, -59.2 )
+
+[node name="2x6x2StaticBody52" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 55, -4, -59.2 )
+
+[node name="2x6x2StaticBody53" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 71, -4, -59.2 )
+
+[node name="2x6x2StaticBody54" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 4.37114e-08, -1, 8.74228e-08, -1, -4.37114e-08, 0, 3.82137e-15, -8.74228e-08, -1, 69, 5.97146, -59.2 )
+
+[node name="Glass pain26" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 63, -1, -61 )
+
+[node name="2x6x2StaticBody55" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 39, 6, -59.2 )
+
+[node name="2x6x2StaticBody56" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 4.37114e-08, -1, 8.74228e-08, -1, -4.37114e-08, 0, 3.82137e-15, -8.74228e-08, -1, 53, 15.9715, -59.2 )
+
+[node name="2x6x2StaticBody57" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 55, 6, -59.2 )
+
+[node name="2x6x2StaticBody58" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 71, 6, -59.2 )
+
+[node name="2x6x2StaticBody59" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 4.37114e-08, -1, 8.74228e-08, -1, -4.37114e-08, 0, 3.82137e-15, -8.74228e-08, -1, 69, 15.9715, -59.2 )
+
+[node name="Glass pain27" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 63, 9, -61 )
+
+[node name="Glass pain28" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 47, 9, -61 )
+
+[node name="2x6x2StaticBody60" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 39, 15, -59.2 )
+
+[node name="2x6x2StaticBody61" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 4.37114e-08, -1, 8.74228e-08, -1, -4.37114e-08, 0, 3.82137e-15, -8.74228e-08, -1, 53, 24.9715, -59.2 )
+
+[node name="2x6x2StaticBody62" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 55, 15, -59.2 )
+
+[node name="2x6x2StaticBody63" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 71, 15, -59.2 )
+
+[node name="2x6x2StaticBody64" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 4.37114e-08, -1, 8.74228e-08, -1, -4.37114e-08, 0, 3.82137e-15, -8.74228e-08, -1, 69, 24.9715, -59.2 )
+
+[node name="Glass pain29" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 63, 18, -61 )
+
+[node name="Glass pain30" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 47, 18, -61 )
+
+[node name="Glass pain31" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 47, -1, -61 )
+
+[node name="2x6x2StaticBody65" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 71.1, -4, -59.1 )
+
+[node name="2x6x2StaticBody66" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -5.73206e-15, 1.31134e-07, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, 1.31134e-07, 71.1, 5.97146, -45.1 )
+
+[node name="2x6x2StaticBody67" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 71.1, -4, -43.1 )
+
+[node name="2x6x2StaticBody68" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 71.1, -4, -27.1 )
+
+[node name="2x6x2StaticBody69" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -5.73206e-15, 1.31134e-07, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, 1.31134e-07, 71.1, 5.97146, -29.1 )
+
+[node name="Glass pain32" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 72.9, -1, -35.1 )
+
+[node name="2x6x2StaticBody70" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 71.1, 6, -59.1 )
+
+[node name="2x6x2StaticBody71" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -5.73206e-15, 1.31134e-07, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, 1.31134e-07, 71.1, 15.9715, -45.1 )
+
+[node name="2x6x2StaticBody72" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 71.1, 6, -43.1 )
+
+[node name="2x6x2StaticBody73" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 71.1, 6, -27.1 )
+
+[node name="2x6x2StaticBody74" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -5.73206e-15, 1.31134e-07, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, 1.31134e-07, 71.1, 15.9715, -29.1 )
+
+[node name="Glass pain33" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 72.9, 9, -35.1 )
+
+[node name="Glass pain34" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 72.9, 9, -51.1 )
+
+[node name="2x6x2StaticBody75" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 71.1, 15, -59.1 )
+
+[node name="2x6x2StaticBody76" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -5.73206e-15, 1.31134e-07, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, 1.31134e-07, 71.1, 24.9715, -45.1 )
+
+[node name="2x6x2StaticBody77" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 71.1, 15, -43.1 )
+
+[node name="2x6x2StaticBody78" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 71.1, 15, -27.1 )
+
+[node name="2x6x2StaticBody79" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -5.73206e-15, 1.31134e-07, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, 1.31134e-07, 71.1, 24.9715, -29.1 )
+
+[node name="Glass pain35" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 72.9, 18, -35.1 )
+
+[node name="Glass pain36" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 72.9, 18, -51.1 )
+
+[node name="Glass pain37" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 72.9, -1, -51.1 )
+
+[node name="2x6x2StaticBody80" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36, -4, -89.4342 )
+
+[node name="2x6x2StaticBody81" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 22, 5.97146, -89.4342 )
+
+[node name="2x6x2StaticBody82" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -4, -89.4342 )
+
+[node name="2x6x2StaticBody83" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -4, -89.4342 )
+
+[node name="2x6x2StaticBody84" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 6, 5.97146, -89.4342 )
+
+[node name="Glass pain38" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, -1, -87.5785 )
+
+[node name="2x6x2StaticBody85" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 6, -89.4342 )
+
+[node name="2x6x2StaticBody86" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 6, -89.4342 )
+
+[node name="2x6x2StaticBody87" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 6, -89.4342 )
+
+[node name="2x6x2StaticBody88" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 6, 15.9715, -89.4342 )
+
+[node name="Glass pain39" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 9, -87.5785 )
+
+[node name="Glass pain40" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 28, 9, -87.5785 )
+
+[node name="2x6x2StaticBody89" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 15, -89.4342 )
+
+[node name="2x6x2StaticBody90" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 22, 24.9715, -89.4342 )
+
+[node name="2x6x2StaticBody91" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 15, -89.4342 )
+
+[node name="2x6x2StaticBody92" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 15, -89.4342 )
+
+[node name="2x6x2StaticBody93" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 6, 24.9715, -89.4342 )
+
+[node name="Glass pain41" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 18, -87.5785 )
+
+[node name="Glass pain42" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 28, 18, -87.5785 )
+
+[node name="Glass pain43" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 28, -1, -87.5785 )
+
+[node name="2x6x2StaticBody94" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -4, -89.4342 )
+
+[node name="2x6x2StaticBody95" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -10, 5.97146, -89.4342 )
+
+[node name="2x6x2StaticBody96" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -4, -89.4342 )
+
+[node name="2x6x2StaticBody97" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28, -4, -89.4342 )
+
+[node name="2x6x2StaticBody98" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -26, 5.97146, -89.4342 )
+
+[node name="Glass pain44" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20, -1, -87.5785 )
+
+[node name="2x6x2StaticBody99" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 6, -89.4342 )
+
+[node name="2x6x2StaticBody100" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 6, -89.4342 )
+
+[node name="2x6x2StaticBody101" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 6, -89.4342 )
+
+[node name="2x6x2StaticBody102" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -26, 15.9715, -89.4342 )
+
+[node name="Glass pain45" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20, 9, -87.5785 )
+
+[node name="Glass pain46" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 9, -87.5785 )
+
+[node name="2x6x2StaticBody103" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 15, -89.4342 )
+
+[node name="2x6x2StaticBody104" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -10, 24.9715, -89.4342 )
+
+[node name="2x6x2StaticBody105" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 15, -89.4342 )
+
+[node name="2x6x2StaticBody106" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 15, -89.4342 )
+
+[node name="2x6x2StaticBody107" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -26, 24.9715, -89.4342 )
+
+[node name="Glass pain47" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20, 18, -87.5785 )
+
+[node name="Glass pain48" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 18, -87.5785 )
+
+[node name="Glass pain49" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, -1, -87.5785 )
+
+[node name="2x6x2StaticBody108" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 22, 15.9715, -89.4342 )
+
+[node name="2x6x2StaticBody109" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -10, 15.9715, -89.4342 )
+
+[node name="2x6x2StaticBody110" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -28, -4, -69.6342 )
+
+[node name="2x6x2StaticBody111" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.82137e-15, 8.74228e-08, -1, -14, 5.97146, -69.6342 )
+
+[node name="2x6x2StaticBody112" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12, -4, -69.6342 )
+
+[node name="2x6x2StaticBody113" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.82137e-15, 8.74228e-08, -1, 2, 5.97146, -69.6342 )
+
+[node name="Glass pain50" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -4, -1, -71.4342 )
+
+[node name="2x6x2StaticBody114" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -28, 6, -69.6342 )
+
+[node name="2x6x2StaticBody115" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12, 6, -69.6342 )
+
+[node name="2x6x2StaticBody116" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.82137e-15, 8.74228e-08, -1, 2, 15.9715, -69.6342 )
+
+[node name="Glass pain51" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -4, 9, -71.4342 )
+
+[node name="Glass pain52" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -20, 9, -71.4342 )
+
+[node name="2x6x2StaticBody117" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -28, 15, -69.6342 )
+
+[node name="2x6x2StaticBody118" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.82137e-15, 8.74228e-08, -1, -14, 24.9715, -69.6342 )
+
+[node name="2x6x2StaticBody119" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12, 15, -69.6342 )
+
+[node name="2x6x2StaticBody120" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, 15, -69.6342 )
+
+[node name="2x6x2StaticBody121" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.82137e-15, 8.74228e-08, -1, 2, 24.9715, -69.6342 )
+
+[node name="Glass pain53" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -4, 18, -71.4342 )
+
+[node name="Glass pain54" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -20, 18, -71.4342 )
+
+[node name="Glass pain55" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -20, -1, -71.4342 )
+
+[node name="2x6x2StaticBody122" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, -4, -69.6342 )
+
+[node name="2x6x2StaticBody123" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.82137e-15, 8.74228e-08, -1, 18, 5.97146, -69.6342 )
+
+[node name="2x6x2StaticBody124" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 20, -4, -69.6342 )
+
+[node name="2x6x2StaticBody125" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 36, -4, -69.6342 )
+
+[node name="2x6x2StaticBody126" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.82137e-15, 8.74228e-08, -1, 34, 5.97146, -69.6342 )
+
+[node name="Glass pain56" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 28, -1, -71.4342 )
+
+[node name="2x6x2StaticBody127" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, 6, -69.6342 )
+
+[node name="2x6x2StaticBody128" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 20, 6, -69.6342 )
+
+[node name="2x6x2StaticBody129" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 36, 6, -69.6342 )
+
+[node name="2x6x2StaticBody130" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.82137e-15, 8.74228e-08, -1, 34, 15.9715, -69.6342 )
+
+[node name="Glass pain57" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 28, 9, -71.4342 )
+
+[node name="Glass pain58" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 12, 9, -71.4342 )
+
+[node name="2x6x2StaticBody131" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.82137e-15, 8.74228e-08, -1, 18, 24.9715, -69.6342 )
+
+[node name="2x6x2StaticBody132" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 20, 15, -69.6342 )
+
+[node name="2x6x2StaticBody133" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 36, 15, -69.6342 )
+
+[node name="2x6x2StaticBody134" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.82137e-15, 8.74228e-08, -1, 34, 24.9715, -69.6342 )
+
+[node name="Glass pain59" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 28, 18, -71.4342 )
+
+[node name="Glass pain60" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 12, 18, -71.4342 )
+
+[node name="Glass pain61" parent="hold all static objects" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 12, -1, -71.4342 )
+
+[node name="2x6x2StaticBody135" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.82137e-15, 8.74228e-08, -1, -14, 15.9715, -69.6342 )
+
+[node name="2x6x2StaticBody136" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.82137e-15, 8.74228e-08, -1, 18, 15.9715, -69.6342 )
+
+[node name="box2" type="MeshInstance" parent="hold all static objects"]
+mesh = SubResource( 4 )
+skeleton = NodePath("../../../..")
+material/0 = null
+
+[node name="wall4" type="StaticBody" parent="hold all static objects"]
+transform = Transform( 0.866025, -4.47035e-08, -0.5, 0.5, 7.74287e-08, 0.866025, 0, -1, 8.9407e-08, -46.5831, 6.5337, -79.6511 )
+
+[node name="CollisionShape" type="CollisionShape" parent="hold all static objects/wall4"]
+transform = Transform( 20, 0, 0, 0, 10, 7.10543e-15, 0, 5.68434e-14, 1, 0, 0, 0 )
+shape = SubResource( 5 )
+
+[node name="box2" type="MeshInstance" parent="hold all static objects/wall4/CollisionShape"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, -1.13687e-13, 1, 0, 0, 0 )
+mesh = SubResource( 4 )
+skeleton = NodePath("../../../..")
+material/0 = null
+
+[node name="2x6x2StaticBody137" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, -28, 15.9715, -85.4342 )
+
+[node name="Ladder 10high" parent="hold all static objects" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.9946, 2.00063, -11.0986 )
+
+[node name="2x6x2StaticBody138" parent="hold all static objects" instance=ExtResource( 6 )]
+transform = Transform( 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.82137e-15, 8.74228e-08, -1, 19, 4.97146, -13.6342 )
+
+[node name="box" type="MeshInstance" parent="."]
+mesh = SubResource( 4 )
+material/0 = ExtResource( 3 )
+
+[node name="Holds all glass" type="Node" parent="."]
+
+[node name="Glass pain" parent="Holds all glass" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, -12 )
+
+[node name="Glass pain2" parent="Holds all glass" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 97.3123, 12.9878, 16.1792 )
+
+[node name="Glass pain3" parent="Holds all glass" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, -15 )
+
+[node name="Glass pain4" parent="Holds all glass" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1, -18 )
+
+[node name="Glass pain5" parent="Holds all glass" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20, -1, -12 )
+
+[node name="Glass pain6" parent="Holds all glass" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -32, -1, -12 )
+
+[node name="Glass pain7" parent="Holds all glass" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20, 6, -12 )
+
+[node name="Glass pain8" parent="Holds all glass" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -32, 6, -12 )
+
+[node name="Glass pain9" parent="Holds all glass" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 63, -1, -25.2 )
+
+[node name="Holds all physics objects" type="Node" parent="."]

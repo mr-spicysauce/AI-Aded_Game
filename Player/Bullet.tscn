@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Bullet.gd" type="Script" id=1]
+[ext_resource path="res://Materials/Bullet.tres" type="Material" id=2]
+
+[sub_resource type="SphereShape" id=4]
+
+[sub_resource type="SphereMesh" id=5]
+
+[node name="Bullet" type="RigidBody" groups=["Can_break_glass"]]
+contacts_reported = 1
+contact_monitor = true
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="CollisionShape" groups=["Can_break_glass"]]
+mesh = SubResource( 5 )
+skeleton = NodePath("../..")
+material/0 = ExtResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]
