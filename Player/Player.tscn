@@ -126,3 +126,4 @@ margin_bottom = 300.0
 [connection signal="body_exited" from="Right_collision" to="." method="_on_Right_collision_body_exited"]
 [connection signal="body_entered" from="Left_collision" to="." method="_on_Left_collision_body_entered"]
 [connection signal="body_exited" from="Left_collision" to="." method="_on_Left_collision_body_exited"]
+[connection signal="update_dev_settings" from="UI holder/Player esc menu" to="." method="_on_Player_esc_menu_update_dev_settings"]

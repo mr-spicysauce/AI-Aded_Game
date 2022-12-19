@@ -8,7 +8,7 @@
 [sub_resource type="SphereMesh" id=5]
 
 [node name="Bullet" type="RigidBody" groups=["Can_break_glass"]]
-contacts_reported = 1
+contacts_reported = 4
 contact_monitor = true
 script = ExtResource( 1 )
 
@@ -22,3 +22,5 @@ skeleton = NodePath("../..")
 material/0 = ExtResource( 2 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[connection signal="body_shape_exited" from="." to="." method="_on_Bullet_body_shape_exited"]

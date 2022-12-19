@@ -3,6 +3,7 @@
 [ext_resource path="res://Scripts/Player esc menu.gd" type="Script" id=1]
 
 [node name="Player esc menu" type="Control"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -11,11 +12,125 @@ script = ExtResource( 1 )
 margin_right = 210.0
 margin_bottom = 205.0
 
-[node name="quit" type="Button" parent="background"]
+[node name="Main page" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="quit" type="Button" parent="Main page"]
 margin_left = 48.7719
 margin_top = 175.748
 margin_right = 159.772
 margin_bottom = 199.748
 text = "Back to game"
 
-[connection signal="pressed" from="background/quit" to="." method="_on_quit_pressed"]
+[node name="dev settings" type="Button" parent="Main page"]
+margin_left = 49.0
+margin_top = 130.0
+margin_right = 159.0
+margin_bottom = 157.0
+text = "dev settings"
+
+[node name="Dev settings" type="Control" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="background" type="ColorRect" parent="Dev settings"]
+margin_right = 459.0
+margin_bottom = 286.0
+color = Color( 1, 0.517647, 1, 1 )
+
+[node name="Back to main page" type="Button" parent="Dev settings"]
+margin_right = 61.0
+margin_bottom = 20.0
+text = "Back to main menu"
+
+[node name="Player speed" type="Label" parent="Dev settings"]
+margin_left = 6.3496
+margin_top = 52.3842
+margin_right = 46.3496
+margin_bottom = 66.3842
+text = "Player speed"
+
+[node name="Player_speed_edit" type="TextEdit" parent="Dev settings/Player speed"]
+margin_left = 145.65
+margin_top = -12.3842
+margin_right = 220.65
+margin_bottom = 12.6158
+text = "240"
+
+[node name="Player deceleration" type="Label" parent="Dev settings"]
+margin_left = 8.1895
+margin_top = 81.2649
+margin_right = 131.189
+margin_bottom = 95.2649
+rect_pivot_offset = Vector2( 20, 7 )
+text = "Player deceleration"
+
+[node name="Player deceleration edit" type="TextEdit" parent="Dev settings/Player deceleration"]
+margin_left = 143.81
+margin_top = -9.26492
+margin_right = 218.81
+margin_bottom = 15.7351
+text = "0.9"
+
+[node name="player mouse sens" type="Label" parent="Dev settings"]
+margin_left = 5.66966
+margin_top = 110.243
+margin_right = 126.67
+margin_bottom = 124.243
+text = "player mouse sens"
+
+[node name="player mouse sens edit" type="TextEdit" parent="Dev settings/player mouse sens"]
+margin_left = 146.33
+margin_top = -6.2431
+margin_right = 221.33
+margin_bottom = 18.7569
+text = "0.1"
+
+[node name="player gravity" type="Label" parent="Dev settings"]
+margin_left = 6.29959
+margin_top = 139.851
+margin_right = 91.2996
+margin_bottom = 153.851
+text = "player gravity"
+
+[node name="player gravity edit" type="TextEdit" parent="Dev settings/player gravity"]
+margin_left = 145.7
+margin_top = -3.85123
+margin_right = 220.7
+margin_bottom = 21.1488
+text = "-77"
+
+[node name="player jump strength" type="Label" parent="Dev settings"]
+margin_left = 5.66962
+margin_top = 172.609
+margin_right = 138.67
+margin_bottom = 186.609
+text = "player jump strength"
+
+[node name="player jump strength edit" type="TextEdit" parent="Dev settings/player jump strength"]
+margin_left = 146.33
+margin_top = -4.60916
+margin_right = 221.33
+margin_bottom = 20.3908
+text = "100"
+
+[node name="Update settings" type="Button" parent="Dev settings"]
+margin_left = 343.024
+margin_top = 262.523
+margin_right = 456.024
+margin_bottom = 282.523
+text = "Update settings"
+
+[node name="Label" type="Label" parent="Dev settings/Update settings"]
+margin_left = -1.88983
+margin_top = -16.379
+margin_right = 114.11
+margin_bottom = -2.37897
+text = "(this session only)"
+
+[connection signal="pressed" from="Main page/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Main page/dev settings" to="." method="_on_dev_settings_pressed"]
+[connection signal="pressed" from="Dev settings/Back to main page" to="." method="_on_Back_to_main_page_pressed"]
+[connection signal="pressed" from="Dev settings/Update settings" to="." method="_on_Update_settings_pressed"]

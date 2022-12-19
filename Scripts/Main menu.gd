@@ -5,6 +5,7 @@ const MAIN_MENU_SCENE = "res://Levels/main_menu.tscn"
 
 # Declare a constant for the scene file for the game
 const GAME_SCENE = ("res://Levels/Testing.tscn")
+const test_lvl_1 = ("res://Levels/Test_lvl_1.tscn")
 var GAME_SCENE_INSTANCE
 
 # Declare variables for the start game button and quit game button
@@ -30,3 +31,6 @@ func _on_start_game_button_pressed():
 func _on_quit_game_button_pressed():
 	# Quit the game
 	get_tree().quit()
+
+func _on_OpenTestLvl1_pressed():
+	get_tree().change_scene(test_lvl_1)

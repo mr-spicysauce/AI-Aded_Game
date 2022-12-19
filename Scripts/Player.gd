@@ -1,7 +1,7 @@
 extends KinematicBody
 
 # Declare variables for movement speed and deceleration
-var speed = 250
+var speed = 230
 var deceleration = 0.9
 
 # Spatial node containing the "head" object
@@ -17,7 +17,7 @@ var sensitivity = 0.1
 var velocity = Vector3()
 
 # Gravitational acceleration applied to the character
-const base_gravity = -150
+var base_gravity = -77
 
 #
 var gravity = -50
@@ -38,7 +38,7 @@ var on_floor = false
 var wall_run_time = 0
 
 #
-var WALL_RUN_DURATION = 2
+var WALL_RUN_DURATION = 1
 
 #
 var object_on_left = false
@@ -103,10 +103,10 @@ func _physics_process(delta):
 		# If so, add the jump strength to the player's velocity
 		velocity.y += jump_strength
 	if Input.is_action_just_pressed("jump") and object_on_right and on_floor == false:
-		velocity += Vector3(left.x, 0.4, left.z) * speed * 0.5
+		velocity += Vector3(left.x, 0.4, left.z) * speed * 0.35
 		velocity += Vector3(forward.x, 0, forward.z) * speed * 0.15
 	if Input.is_action_just_pressed("jump") and object_on_left and on_floor == false:
-		velocity += Vector3(right.x, 0.4, right.z) * speed * 0.5
+		velocity += Vector3(right.x, 0.4, right.z) * speed * 0.35
 		velocity += Vector3(forward.x, 0, forward.z) * speed * 0.15
 
 
@@ -120,10 +120,9 @@ func _physics_process(delta):
 		on_floor = false
 	
 	if on_floor == false and on_wall == false:
-		gravity += base_gravity * 1.5 * delta
+		gravity += base_gravity * 10 * delta
 	else:
 		gravity = base_gravity
-	
 	
 	
 	# Apply gravity to the player's velocity
@@ -186,3 +185,16 @@ func _on_Left_collision_body_entered(body):
 
 func _on_Left_collision_body_exited(body):
 	object_on_left = false
+
+func _on_Player_esc_menu_update_dev_settings():
+	speed = global_vars.player_speed
+	deceleration = global_vars.player_deceleration
+	sensitivity = global_vars.player_mouse_sensitivity
+	base_gravity = global_vars.player_base_gravity
+	jump_strength = global_vars.player_jump_strength
+	
+	print(speed)
+	print(deceleration)
+	print(sensitivity)
+	print(base_gravity)
+	print(jump_strength)
