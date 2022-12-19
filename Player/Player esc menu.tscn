@@ -16,7 +16,7 @@ margin_bottom = 205.0
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="quit" type="Button" parent="Main page"]
+[node name="back to game" type="Button" parent="Main page"]
 margin_left = 48.7719
 margin_top = 175.748
 margin_right = 159.772
@@ -29,6 +29,13 @@ margin_top = 130.0
 margin_right = 159.0
 margin_bottom = 157.0
 text = "dev settings"
+
+[node name="quit game" type="Button" parent="Main page"]
+margin_left = 49.0
+margin_top = 16.0
+margin_right = 145.0
+margin_bottom = 48.0
+text = "Quit game"
 
 [node name="Dev settings" type="Control" parent="."]
 visible = false
@@ -130,7 +137,8 @@ margin_right = 114.11
 margin_bottom = -2.37897
 text = "(this session only)"
 
-[connection signal="pressed" from="Main page/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Main page/back to game" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Main page/dev settings" to="." method="_on_dev_settings_pressed"]
+[connection signal="pressed" from="Main page/quit game" to="." method="_on_quit_game_pressed"]
 [connection signal="pressed" from="Dev settings/Back to main page" to="." method="_on_Back_to_main_page_pressed"]
 [connection signal="pressed" from="Dev settings/Update settings" to="." method="_on_Update_settings_pressed"]

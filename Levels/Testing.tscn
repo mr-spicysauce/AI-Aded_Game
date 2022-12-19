@@ -1,12 +1,17 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Materials/TestingBlue.tres" type="Material" id=2]
 [ext_resource path="res://Materials/TestingOrange.tres" type="Material" id=3]
-[ext_resource path="res://game objects/Glass pain.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Game assets/Glass pain.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Building blocks/10x10x10StaticBody.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Building blocks/2x6x2StaticBody.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Building blocks/Ladder 10high.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Game assets/Ladder 4high.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Game assets/Ladder 8high.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Building blocks/2x4x2StaticBody.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Building blocks/2x2x2StaticBody.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Game assets/2x2x2Metal box.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Player/Bullet.tscn" type="PackedScene" id=12]
 
 [sub_resource type="BoxShape" id=5]
 
@@ -644,11 +649,6 @@ transform = Transform( 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.82
 [node name="2x6x2StaticBody136" parent="hold all static objects" instance=ExtResource( 6 )]
 transform = Transform( 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.82137e-15, 8.74228e-08, -1, 18, 15.9715, -69.6342 )
 
-[node name="box2" type="MeshInstance" parent="hold all static objects"]
-mesh = SubResource( 4 )
-skeleton = NodePath("../../../..")
-material/0 = null
-
 [node name="wall4" type="StaticBody" parent="hold all static objects"]
 transform = Transform( 0.866025, -4.47035e-08, -0.5, 0.5, 7.74287e-08, 0.866025, 0, -1, 8.9407e-08, -46.5831, 6.5337, -79.6511 )
 
@@ -666,10 +666,28 @@ material/0 = null
 transform = Transform( 1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, -28, 15.9715, -85.4342 )
 
 [node name="Ladder 10high" parent="hold all static objects" instance=ExtResource( 7 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.9946, 2.00063, -11.0986 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.9946, 1.30063, -11.0986 )
+
+[node name="Ladder 20high" parent="hold all static objects" instance=ExtResource( 8 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 13.9946, 1.30063, -11.0986 )
+
+[node name="2x4x2StaticBody" parent="hold all static objects" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0228, 1.99844, -13.0052 )
+
+[node name="2x4x2StaticBody2" parent="hold all static objects" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0228, 1.99844, -13.0052 )
+
+[node name="2x4x2StaticBody3" parent="hold all static objects" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0228, 9.99844, -13.0052 )
+
+[node name="2x2x2StaticBody" parent="hold all static objects" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.028, 4, -17 )
+
+[node name="2x2x2StaticBody2" parent="hold all static objects" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0256, 12, -17 )
 
 [node name="2x6x2StaticBody138" parent="hold all static objects" instance=ExtResource( 6 )]
-transform = Transform( 4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.82137e-15, 8.74228e-08, -1, 19, 4.97146, -13.6342 )
+transform = Transform( 1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -31.9011, 15, -72 )
 
 [node name="box" type="MeshInstance" parent="."]
 mesh = SubResource( 4 )
@@ -704,4 +722,13 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -32, 6,
 [node name="Glass pain9" parent="Holds all glass" instance=ExtResource( 4 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 63, -1, -25.2 )
 
+[node name="Glass pain10" parent="Holds all glass" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-07, 0, -1, 1, -4.37114e-08, 1.31134e-07, -4.37114e-08, -1, -5.73205e-15, -30.9552, 2.04979, -52.9976 )
+
 [node name="Holds all physics objects" type="Node" parent="."]
+
+[node name="2x2x2Metal box" parent="Holds all physics objects" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 19, -62 )
+
+[node name="Bullet" parent="Holds all physics objects" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 54, 12 )

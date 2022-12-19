@@ -2,6 +2,9 @@ extends KinematicBody
 
 # Declare variables for movement speed and deceleration
 var speed = 230
+
+var base_deceleration = 0.9
+
 var deceleration = 0.9
 
 # Spatial node containing the "head" object
@@ -9,6 +12,9 @@ export(NodePath) onready var head = get_node("head") as Spatial
 
 #
 export(NodePath) onready var wall_run_time_out = get_node("wall_run time out") as Timer
+
+#
+export(NodePath) onready var slide_time_out = get_node("Slide_time time out") as Timer
 
 # Sensitivity of character movement
 var sensitivity = 0.1
@@ -47,6 +53,21 @@ var object_on_left = false
 var object_on_right = false
 
 #
+var slide_speed = 0.01
+
+#
+var is_sliding = false
+
+#
+var can_slide = true
+
+#
+var slide_time = 0
+
+#
+var slide_duration = 1
+
+#
 onready var global_vars = get_node("/root/Globals")
 
 # Called when the script is first run
@@ -67,29 +88,28 @@ func update_wall_run_time(delta):
 			wall_run_time = 0
 
 func _physics_process(delta):
-	
+	deceleration = clamp(deceleration, base_deceleration, 0.94)
 	var aim = head.get_global_transform().basis
 	var forward = -aim.z
 	var backward = aim.z
 	var left = -aim.x
 	var right = aim.x
 	
-	if Input.is_action_pressed("ui_up"):
+	if Input.is_action_pressed("ui_up") and is_sliding == false:
 		# If it is, increase the velocity in the forward direction
 		velocity += Vector3(forward.x, 0, forward.z) * speed * delta
-	if Input.is_action_pressed("ui_up") and global_vars.player_on_ladder == true:
+	if Input.is_action_pressed("ui_up") and global_vars.player_on_ladder == true and is_sliding == false:
 		velocity += Vector3(forward.x, 1, forward.z) * speed * delta
 
-
-	if Input.is_action_pressed("ui_down"):
+	if Input.is_action_pressed("ui_down") and is_sliding == false:
 		# If it is, increase the velocity in the forward direction
 		velocity += Vector3(backward.x, 0, backward.z) * speed * delta
 
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("ui_right") and is_sliding == false:
 		# If it is, increase the velocity in the forward direction
 		velocity += right * speed * delta
 
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed("ui_left") and is_sliding == false:
 		# If it is, increase the velocity in the forward direction
 		velocity += left * speed * delta
 
@@ -99,20 +119,36 @@ func _physics_process(delta):
 		velocity += Vector3(0, 0, 0) * speed * delta
 
 	# Check if the player is pressing the jump button and is on the ground
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor() and is_sliding == false:
 		# If so, add the jump strength to the player's velocity
 		velocity.y += jump_strength
-	if Input.is_action_just_pressed("jump") and object_on_right and on_floor == false:
+	if Input.is_action_just_pressed("jump") and object_on_right and on_floor == false and is_sliding == false:
 		velocity += Vector3(left.x, 0.4, left.z) * speed * 0.35
 		velocity += Vector3(forward.x, 0, forward.z) * speed * 0.15
-	if Input.is_action_just_pressed("jump") and object_on_left and on_floor == false:
+	if Input.is_action_just_pressed("jump") and object_on_left and on_floor == false and is_sliding == false:
 		velocity += Vector3(right.x, 0.4, right.z) * speed * 0.35
 		velocity += Vector3(forward.x, 0, forward.z) * speed * 0.15
-
-
+	var int_velocity = abs(velocity.x) + abs(velocity.y)
+	if Input.is_action_pressed("Ctrl") and on_floor and int_velocity >40 and can_slide == true:
+		is_sliding = true
+		slide_time += delta
+		slide_time_out.start()
 	else:
-		# If it is not, apply deceleration to the velocity
-		velocity *= deceleration
+		is_sliding = false
+		slide_time = 0
+	if slide_time > slide_duration:
+		slide_time = 0
+		is_sliding = false
+		can_slide = false
+		slide_time_out.start()
+	
+	if is_sliding == true:
+		velocity += Vector3(forward.x, 0, forward.z) * speed * delta
+		deceleration = deceleration + slide_speed
+	
+	if is_sliding == false:
+		deceleration = base_deceleration
+	velocity *= deceleration
 	
 	if is_on_floor():
 		on_floor = true
@@ -124,11 +160,9 @@ func _physics_process(delta):
 	else:
 		gravity = base_gravity
 	
-	
 	# Apply gravity to the player's velocity
 	if global_vars.player_on_ladder == false:
 		velocity.y += gravity * delta
-	
 	
 	global_vars.player_velocity = velocity
 	
@@ -159,8 +193,14 @@ func _physics_process(delta):
 		on_wall = false
 		wall_run_time = 0
 
+func _on_Slide_time_time_out_timeout():
+	can_slide = true
+	print("works")
+
 func _on_wall_run_time_out_timeout():
 	can_wall_run = true
+	print("wall time out")
+
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:

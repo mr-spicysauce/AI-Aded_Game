@@ -6,10 +6,10 @@
 
 [sub_resource type="CubeMesh" id=2]
 
-[node name="2x6x2StaticBody" type="StaticBody"]
+[node name="2x2x2StaticBody" type="StaticBody"]
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 2, 0, 0, 0, 6, 0, 0, 0, 2, 0, 6, 0 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="CollisionShape"]

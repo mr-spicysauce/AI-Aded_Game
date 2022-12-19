@@ -1,0 +1,118 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://textures/AI textures/wood_texture_1.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Ladder script.gd" type="Script" id=2]
+
+[sub_resource type="BoxShape" id=1]
+
+[sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="CylinderShape" id=3]
+
+[sub_resource type="CylinderMesh" id=4]
+
+[sub_resource type="SpatialMaterial" id=7]
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="BoxShape" id=8]
+
+[node name="Ladder 4high" type="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00539112, 4.00063, -0.0985579 )
+script = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 4, 0, 0, 0, 0.5, 0, 0.7, 0 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="CollisionShape"]
+mesh = SubResource( 2 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 5 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 4, 0, 0, 0, 0.5, 0, 0.700001, -4 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="CollisionShape2"]
+mesh = SubResource( 2 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 6 )
+
+[node name="step 1" type="CollisionShape" parent="."]
+transform = Transform( 0.25, 0, 0, 0, -6.55671e-08, 0.25, 0, -1.5, -1.09278e-08, 0, -3, -2 )
+shape = SubResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="step 1"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="step 2" type="CollisionShape" parent="."]
+transform = Transform( 0.25, 0, 0, 0, -6.55671e-08, 0.25, 0, -1.5, -1.09278e-08, 0, -2, -2 )
+shape = SubResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="step 2"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="step 3" type="CollisionShape" parent="."]
+transform = Transform( 0.25, 0, 0, 0, -6.55671e-08, 0.25, 0, -1.5, -1.09278e-08, 0, -1, -2 )
+shape = SubResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="step 3"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="step 4" type="CollisionShape" parent="."]
+transform = Transform( 0.25, 0, 0, 0, -6.55671e-08, 0.25, 0, -1.5, -1.09278e-08, 0, -4.76837e-07, -2 )
+shape = SubResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="step 4"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="step 5" type="CollisionShape" parent="."]
+transform = Transform( 0.25, 0, 0, 0, -6.55671e-08, 0.25, 0, -1.5, -1.09278e-08, 0, 1, -2 )
+shape = SubResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="step 5"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="step 6" type="CollisionShape" parent="."]
+transform = Transform( 0.25, 0, 0, 0, -6.55671e-08, 0.25, 0, -1.5, -1.09278e-08, 0, 2, -2 )
+shape = SubResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="step 6"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="step 7" type="CollisionShape" parent="."]
+transform = Transform( 0.25, 0, 0, 0, -6.55671e-08, 0.25, 0, -1.5, -1.09278e-08, 0, 3, -2 )
+shape = SubResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="step 7"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="step 8" type="CollisionShape" parent="."]
+transform = Transform( 0.25, 0, 0, 0, -6.55671e-08, 0.25, 0, -1.5, -1.09278e-08, 0, 4, -2 )
+shape = SubResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="step 8"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 7 )
+
+[node name="Area" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1.25, 0, 0, 0, 4, 0, 0, 0, 1.5, 0, 0.7, -2 )
+shape = SubResource( 8 )
+
+[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
+[connection signal="body_exited" from="Area" to="." method="_on_Area_body_exited"]

@@ -42,6 +42,7 @@ func _on_Area_body_entered(body):
 				print("object is near")
 				# Get the velocity of the body that entered the area
 				var velocity = body.get_linear_velocity()
+				velocity += velocity * 2
 				print(velocity)
 				print(body.name)
 				break_glass(velocity)

@@ -40,3 +40,6 @@ func _on_Update_settings_pressed():
 	globals.player_base_gravity = int(player_base_gravity_edit.get_text())
 	globals.player_jump_strength = int(player_jump_strength_edit.get_text())
 	emit_signal("update_dev_settings")
+
+func _on_quit_game_pressed():
+	get_tree().quit()

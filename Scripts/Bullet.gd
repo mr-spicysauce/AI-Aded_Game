@@ -1,5 +1,6 @@
 extends RigidBody
 
+onready var particals = $Bullet_particals
 onready var Cshape = $CollisionShape
 
 var bounce_amount = 0
@@ -10,8 +11,9 @@ func _ready():
 	yield($Tween, "tween_completed")
 	queue_free()
 
-func _on_Bullet_body_shape_exited(body_rid, body, body_shape_index, local_shape_index):
+func _on_Bullet_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+	particals.emitting = true
 	bounce_amount += 1
 	print(bounce_amount)
-	if bounce_amount > 1:
+	if bounce_amount > 2:
 		queue_free()

@@ -95,6 +95,9 @@ material/0 = null
 wait_time = 2.0
 one_shot = true
 
+[node name="Slide_time time out" type="Timer" parent="."]
+one_shot = true
+
 [node name="Right_collision" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15, 1, 0 )
 
@@ -122,6 +125,7 @@ margin_bottom = 300.0
 [node name="Player esc menu" parent="UI holder" instance=ExtResource( 2 )]
 
 [connection signal="timeout" from="wall_run time out" to="." method="_on_wall_run_time_out_timeout"]
+[connection signal="timeout" from="Slide_time time out" to="." method="_on_Slide_time_time_out_timeout"]
 [connection signal="body_entered" from="Right_collision" to="." method="_on_Right_collision_body_entered"]
 [connection signal="body_exited" from="Right_collision" to="." method="_on_Right_collision_body_exited"]
 [connection signal="body_entered" from="Left_collision" to="." method="_on_Left_collision_body_entered"]
