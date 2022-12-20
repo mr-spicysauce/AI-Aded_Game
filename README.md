@@ -4,7 +4,9 @@ The AI I am using to help me code this game is https://chat.openai.com/chat
 
 I am trying to make the AI do as much of coding as possible to see how far I can push its limits!
 
-===How to download and test===
+============================================
+==========How to download and test==========
+============================================
 
 Because the open AI chatbot is trained on info from 2021 I am using an older version of Godot.
 
