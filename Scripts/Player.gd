@@ -22,6 +22,9 @@ onready var Collisionshape = get_node("CollisionShape") as CollisionShape
 #
 onready var CrouchingCollision = get_node("CrouchingCollision") as CollisionShape
 
+#
+onready var speedparticals = get_node("head/SpeedParticals")
+
 # Sensitivity of character movement
 var sensitivity = 0.1
 
@@ -72,6 +75,9 @@ var slide_time = 0
 
 #
 var slide_duration = 0.5
+
+#
+var is_crouching
 
 #
 onready var global_vars = get_node("/root/Globals")
@@ -136,7 +142,7 @@ func _physics_process(delta):
 		velocity += Vector3(right.x, 0.4, right.z) * speed * 0.35
 		velocity += Vector3(forward.x, 0, forward.z) * speed * 0.15
 	var int_velocity = abs(velocity.x) + abs(velocity.z)
-	if Input.is_action_pressed("Ctrl") and int_velocity >35 and can_slide == true:
+	if Input.is_action_pressed("Ctrl") and on_floor == true and int_velocity >35 and can_slide == true and is_crouching == false:
 		is_sliding = true
 		slide_time += delta
 		slide_time_out.start()
@@ -155,12 +161,30 @@ func _physics_process(delta):
 		Collisionshape.disabled = true
 		CrouchingCollision.disabled = false
 		head.translation = $CrouchHeadpos.transform.origin
+		$"Partical holder/SlidingParticals".emitting = true
+		speedparticals.emitting = true
 	
 	if is_sliding == false:
 		deceleration = base_deceleration
 		Collisionshape.disabled = false
 		CrouchingCollision.disabled = true
 		head.translation = $Headpos.transform.origin
+		$"Partical holder/SlidingParticals".emitting = false
+		speedparticals.emitting = false
+	
+	if Input.is_action_pressed("Ctrl") and is_sliding == false:
+		is_crouching = true
+	else:
+		is_crouching = false
+	
+	if is_crouching == true:
+		head.translation = $CrouchHeadpos.transform.origin
+		Collisionshape.disabled = true
+		CrouchingCollision.disabled = false
+	elif is_sliding == false:
+		head.translation = $Headpos.transform.origin
+		Collisionshape.disabled = false
+		CrouchingCollision.disabled = true
 	
 	velocity *= deceleration
 	
@@ -209,11 +233,9 @@ func _physics_process(delta):
 
 func _on_Slide_time_time_out_timeout():
 	can_slide = true
-	print("works")
 
 func _on_wall_run_time_out_timeout():
 	can_wall_run = true
-	print("wall time out")
 
 
 func _input(event):

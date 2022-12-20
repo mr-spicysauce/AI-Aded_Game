@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Main menu.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Globals.gd" type="Script" id=2]
+[ext_resource path="res://Particals/SpeedParticals.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Particals/SlidingParticals.tscn" type="PackedScene" id=4]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -38,5 +40,17 @@ margin_top = 228.607
 margin_right = 572.224
 margin_bottom = 287.607
 text = "TempLvl1.tscn"
+
+[node name="cache" type="Node" parent="."]
+
+[node name="Camera" type="Camera" parent="."]
+
+[node name="SpeedParticals" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -2 )
+emitting = true
+
+[node name="SlidingParticals" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 0.98563, 0.168919, 0, -0.168919, 0.98563, 0, 0, -7 )
+emitting = true
 
 [connection signal="pressed" from="OpenTestLvl1" to="." method="_on_OpenTestLvl1_pressed"]
