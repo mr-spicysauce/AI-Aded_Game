@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Materials/TestingBlue.tres" type="Material" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Building blocks/2x2x2StaticBody.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Game assets/2x2x2Metal box.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Player/Bullet.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Materials/testing_environment.tres" type="Environment" id=13]
 
 [sub_resource type="BoxShape" id=5]
 
@@ -753,3 +754,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 19, -62 )
 
 [node name="Bullet" parent="Holds all physics objects" instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 54, 12 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 13 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment"]
+transform = Transform( -1, -6.69697e-08, 5.61943e-08, 0, 0.642788, 0.766044, -8.74228e-08, 0.766044, -0.642788, -5.50594, 155.102, -165.116 )
+light_energy = 2.0
+shadow_enabled = true
+directional_shadow_max_distance = 500.0
