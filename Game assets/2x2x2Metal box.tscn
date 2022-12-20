@@ -15,6 +15,7 @@ normal_scale = 1.0
 normal_texture = ExtResource( 2 )
 
 [sub_resource type="BoxShape" id=4]
+extents = Vector3( 2, 2, 2 )
 
 [node name="2x2x2Metal box" type="RigidBody" groups=["Can_break_glass"]]
 mass = 50.0
@@ -29,5 +30,4 @@ skeleton = NodePath("../CollisionShape")
 material/0 = SubResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 shape = SubResource( 4 )

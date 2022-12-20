@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player esc menu.tscn" type="PackedScene" id=2]
@@ -10,11 +10,19 @@
 [ext_resource path="res://Player/Crosshair.tscn" type="PackedScene" id=8]
 
 [sub_resource type="CapsuleShape" id=1]
+height = 2.0
 
 [sub_resource type="CapsuleMesh" id=2]
+mid_height = 2.0
 
 [sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 0.74902, 0.74902, 0.74902, 1 )
+
+[sub_resource type="CapsuleShape" id=12]
+height = 0.75
+
+[sub_resource type="CapsuleMesh" id=13]
+mid_height = 0.75
 
 [sub_resource type="PlaneMesh" id=6]
 material = ExtResource( 3 )
@@ -28,27 +36,39 @@ size = Vector2( 0.01, 0.01 )
 material = ExtResource( 4 )
 size = Vector2( 0.01, 0.01 )
 
-[sub_resource type="CubeMesh" id=9]
-
 [sub_resource type="BoxShape" id=4]
 
+[sub_resource type="CubeMesh" id=10]
+
 [sub_resource type="BoxShape" id=5]
+
+[sub_resource type="CubeMesh" id=11]
 
 [node name="Player" type="KinematicBody" groups=["Can_break_glass"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 script = ExtResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="." groups=["Can_break_glass"]]
-transform = Transform( -1, 8.74228e-08, -7.64274e-15, 0, -4.37114e-08, -2, -8.74228e-08, -1, 8.74228e-08, -0.0904503, 1.06886, 0.106282 )
+transform = Transform( -1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 1, 0 )
+visible = false
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="CollisionShape"]
-visible = false
 mesh = SubResource( 2 )
 material/0 = SubResource( 3 )
 
+[node name="CrouchingCollision" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.4, 0 )
+visible = false
+shape = SubResource( 12 )
+disabled = true
+
+[node name="MeshInstance" type="MeshInstance" parent="CrouchingCollision"]
+mesh = SubResource( 13 )
+material/0 = null
+
 [node name="head" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5456, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.95, 0 )
 
 [node name="Camera" type="Camera" parent="head"]
 fov = 100.0
@@ -86,11 +106,6 @@ script = ExtResource( 6 )
 [node name="Bullet direction" type="Spatial" parent="head"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5 )
 
-[node name="MeshInstance" type="MeshInstance" parent="head/Bullet direction"]
-visible = false
-mesh = SubResource( 9 )
-material/0 = null
-
 [node name="wall_run time out" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
@@ -99,18 +114,28 @@ one_shot = true
 one_shot = true
 
 [node name="Right_collision" type="Area" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15, 1, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15, 0.5, 0 )
+visible = false
 
 [node name="CollisionShape" type="CollisionShape" parent="Right_collision"]
 transform = Transform( 0.1, 0, 0, 0, 0.25, 0, 0, 0, 0.5, -0.1, 0, 0 )
 shape = SubResource( 4 )
 
+[node name="MeshInstance" type="MeshInstance" parent="Right_collision/CollisionShape"]
+mesh = SubResource( 10 )
+material/0 = null
+
 [node name="Left_collision" type="Area" parent="."]
-transform = Transform( 0.1, 0, 0, 0, 0.25, 0, 0, 0, 0.5, -1.1053, 1, 0 )
+transform = Transform( 0.1, 0, 0, 0, 0.25, 0, 0, 0, 0.5, -1.1053, 0.5, 0 )
+visible = false
 
 [node name="CollisionShape" type="CollisionShape" parent="Left_collision"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0983, 0, 0 )
 shape = SubResource( 5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Left_collision/CollisionShape"]
+mesh = SubResource( 11 )
+material/0 = null
 
 [node name="UI holder" type="Node" parent="."]
 
@@ -123,6 +148,12 @@ margin_right = 512.0
 margin_bottom = 300.0
 
 [node name="Player esc menu" parent="UI holder" instance=ExtResource( 2 )]
+
+[node name="Headpos" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.95, 0 )
+
+[node name="CrouchHeadpos" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 
 [connection signal="timeout" from="wall_run time out" to="." method="_on_wall_run_time_out_timeout"]
 [connection signal="timeout" from="Slide_time time out" to="." method="_on_Slide_time_time_out_timeout"]

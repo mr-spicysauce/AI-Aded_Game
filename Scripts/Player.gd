@@ -16,6 +16,12 @@ export(NodePath) onready var wall_run_time_out = get_node("wall_run time out") a
 #
 export(NodePath) onready var slide_time_out = get_node("Slide_time time out") as Timer
 
+#
+onready var Collisionshape = get_node("CollisionShape") as CollisionShape
+
+#
+onready var CrouchingCollision = get_node("CrouchingCollision") as CollisionShape
+
 # Sensitivity of character movement
 var sensitivity = 0.1
 
@@ -65,7 +71,7 @@ var can_slide = true
 var slide_time = 0
 
 #
-var slide_duration = 1
+var slide_duration = 0.5
 
 #
 onready var global_vars = get_node("/root/Globals")
@@ -75,6 +81,7 @@ func _ready():
 	# Set the mouse mode to captured, so that it is hidden and
 	# the movement is relative to the screen
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
 
 # Check if the player is currently wall running
 func is_wall_running():
@@ -128,8 +135,8 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump") and object_on_left and on_floor == false and is_sliding == false:
 		velocity += Vector3(right.x, 0.4, right.z) * speed * 0.35
 		velocity += Vector3(forward.x, 0, forward.z) * speed * 0.15
-	var int_velocity = abs(velocity.x) + abs(velocity.y)
-	if Input.is_action_pressed("Ctrl") and on_floor and int_velocity >40 and can_slide == true:
+	var int_velocity = abs(velocity.x) + abs(velocity.z)
+	if Input.is_action_pressed("Ctrl") and int_velocity >35 and can_slide == true:
 		is_sliding = true
 		slide_time += delta
 		slide_time_out.start()
@@ -145,9 +152,16 @@ func _physics_process(delta):
 	if is_sliding == true:
 		velocity += Vector3(forward.x, 0, forward.z) * speed * delta
 		deceleration = deceleration + slide_speed
+		Collisionshape.disabled = true
+		CrouchingCollision.disabled = false
+		head.translation = $CrouchHeadpos.transform.origin
 	
 	if is_sliding == false:
 		deceleration = base_deceleration
+		Collisionshape.disabled = false
+		CrouchingCollision.disabled = true
+		head.translation = $Headpos.transform.origin
+	
 	velocity *= deceleration
 	
 	if is_on_floor():
