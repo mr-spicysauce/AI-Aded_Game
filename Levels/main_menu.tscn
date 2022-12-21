@@ -1,56 +1,90 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Main menu.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Globals.gd" type="Script" id=2]
 [ext_resource path="res://Particals/SpeedParticals.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Particals/SlidingParticals.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Fonts/Indulta-SemiSerif-boldFFP.otf" type="DynamicFontData" id=5]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="PlaneMesh" id=2]
+material = SubResource( 1 )
+size = Vector2( 50, 50 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 64
+font_data = ExtResource( 5 )
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -0.943909
-margin_top = -0.943863
-margin_right = -0.943909
-margin_bottom = -0.943848
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Globals" type="Node" parent="."]
-script = ExtResource( 2 )
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -125.0
+margin_top = -50.0
+margin_right = 125.0
+margin_bottom = 50.0
 
-[node name="StartGameButton" type="Button" parent="."]
-margin_left = 345.724
-margin_top = 146.832
-margin_right = 572.724
-margin_bottom = 205.832
+[node name="StartGameButton" type="Button" parent="VBoxContainer"]
+margin_right = 250.0
+margin_bottom = 20.0
 text = "Start Testing.tscn"
 
-[node name="QuitGameButton" type="Button" parent="."]
-margin_left = 342.219
-margin_top = 312.697
-margin_right = 573.219
-margin_bottom = 374.697
+[node name="OpenTestLvl1" type="Button" parent="VBoxContainer"]
+margin_top = 24.0
+margin_right = 250.0
+margin_bottom = 44.0
+text = "TempLvl1.tscn"
+
+[node name="QuitGameButton" type="Button" parent="VBoxContainer"]
+margin_top = 48.0
+margin_right = 250.0
+margin_bottom = 68.0
 text = "Quit"
 
-[node name="OpenTestLvl1" type="Button" parent="."]
-margin_left = 352.224
-margin_top = 228.607
-margin_right = 572.224
-margin_bottom = 287.607
-text = "TempLvl1.tscn"
+[node name="Globals" type="Node" parent="."]
+script = ExtResource( 2 )
 
 [node name="cache" type="Node" parent="."]
 
 [node name="Camera" type="Camera" parent="."]
 
 [node name="SpeedParticals" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -2 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -3 )
 emitting = true
+amount = 64
+lifetime = 1.07
+emission_box_extents = Vector3( 2, 2, 2 )
 
 [node name="SlidingParticals" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 0.98563, 0.168919, 0, -0.168919, 0.98563, 0, 0, -7 )
+visible = false
 emitting = true
 
-[connection signal="pressed" from="OpenTestLvl1" to="." method="_on_OpenTestLvl1_pressed"]
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -6 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.1
+anchor_right = 0.5
+anchor_bottom = 0.143
+margin_left = -251.5
+margin_right = 251.5
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 3 )
+text = "AI-Aided Game!"
+
+[connection signal="pressed" from="VBoxContainer/OpenTestLvl1" to="." method="_on_OpenTestLvl1_pressed"]

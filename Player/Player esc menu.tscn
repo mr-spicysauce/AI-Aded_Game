@@ -137,6 +137,19 @@ margin_right = 114.11
 margin_bottom = -2.37897
 text = "(this session only)"
 
+[node name="Max ammo" type="Label" parent="Dev settings"]
+margin_left = 8.0
+margin_top = 200.0
+margin_right = 79.0
+margin_bottom = 214.0
+text = "Max ammo"
+
+[node name="Max ammo edit" type="TextEdit" parent="Dev settings/Max ammo"]
+margin_left = 144.0
+margin_right = 219.0
+margin_bottom = 25.0
+text = "12"
+
 [connection signal="pressed" from="Main page/back to game" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Main page/dev settings" to="." method="_on_dev_settings_pressed"]
 [connection signal="pressed" from="Main page/quit game" to="." method="_on_quit_game_pressed"]

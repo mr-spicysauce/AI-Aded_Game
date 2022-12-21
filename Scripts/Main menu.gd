@@ -15,8 +15,8 @@ var quit_game_button
 # This function is called when the main menu is first displayed
 func _ready():
 	# Get the start game button and quit game button nodes
-	start_game_button = get_node("StartGameButton")
-	quit_game_button = get_node("QuitGameButton")
+	start_game_button = get_node("VBoxContainer/StartGameButton")
+	quit_game_button = get_node("VBoxContainer/QuitGameButton")
 	
 	# Connect the button clicked signals to the appropriate functions
 	start_game_button.connect("pressed", self, "_on_start_game_button_pressed")

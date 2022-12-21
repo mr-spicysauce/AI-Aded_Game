@@ -1,6 +1,6 @@
 extends Spatial
 
-onready var player = get_parent().get_parent().get_node("Player")
+onready var player = get_parent().get_parent().get_parent().get_node("Player")
 
 # Assume that `player` is the player object and `object` is the object that you want to trigger an action
 
@@ -13,9 +13,14 @@ var distance
 
 signal break_glass
 
+signal player_smash_glass
+
 export var BreakParticals: PackedScene = preload("res://game objects/Breaking glass particals.tscn")
 
 var bullet = "Bullet"
+
+func _ready():
+	self.connect("player_smash_glass", player, "_on_glass_thing_player_smash_glass")
 
 func break_glass(velocity):
 	if velocity.length() > min_speed and is_object_near == true:
@@ -28,6 +33,8 @@ func _on_Area_body_entered(body):
 		is_object_near = true
 		print("object is near")
 		var velocity = body.velocity
+		if velocity.length() > min_speed and is_object_near == true:
+			emit_signal("player_smash_glass")
 		print(velocity)
 		break_glass(velocity)
 	else:
@@ -49,3 +56,4 @@ func _on_Area_body_entered(body):
 
 func _on_Area_body_exited(body):
 	is_object_near = false
+

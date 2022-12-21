@@ -79,6 +79,17 @@ var slide_duration = 0.5
 #
 var is_crouching
 
+# The intensity of the camera shake
+var shake_intensity = 0.25
+
+# A timer to control the duration of the shake
+var shake_timer = 0
+
+# The maximum duration of the shake, in seconds
+var shake_duration = 0.05
+
+var shake = false
+
 #
 onready var global_vars = get_node("/root/Globals")
 
@@ -230,6 +241,10 @@ func _physics_process(delta):
 	else:
 		on_wall = false
 		wall_run_time = 0
+		head.rotation_degrees.z = 0
+	
+	if shake == true:
+		shake()
 
 func _on_Slide_time_time_out_timeout():
 	can_slide = true
@@ -255,6 +270,8 @@ func _on_Right_collision_body_entered(body):
 
 func _on_Right_collision_body_exited(body):
 	object_on_right = false
+	if can_wall_run == true and on_wall == true:
+		head.rotation_degrees.z = 0
 
 func _on_Left_collision_body_entered(body):
 	object_on_left = true
@@ -274,3 +291,18 @@ func _on_Player_esc_menu_update_dev_settings():
 	print(sensitivity)
 	print(base_gravity)
 	print(jump_strength)
+
+func shake():
+	print("shake")
+	# Apply a random displacement to the camera's position, based on the intensity
+	head.translate(Vector3(rand_range(-shake_intensity, shake_intensity), rand_range(-shake_intensity, shake_intensity), 0))
+	# Increment the timer
+	
+	shake_timer += get_process_delta_time()
+	# If the shake has reached the maximum duration, stop shaking
+	if shake_timer >= shake_duration:
+		shake_timer = 0
+		shake = false
+
+func _on_glass_thing_player_smash_glass():
+	shake = true

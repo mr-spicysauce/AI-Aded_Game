@@ -6,6 +6,7 @@ onready var player_deceleration_edit = $"Dev settings/Player deceleration/Player
 onready var player_jump_strength_edit = $"Dev settings/player jump strength/player jump strength edit"
 onready var player_mouse_sensitivity_edit = $"Dev settings/player mouse sens/player mouse sens edit"
 onready var player_base_gravity_edit = $"Dev settings/player gravity/player gravity edit"
+onready var max_ammo_edit = $"Dev settings/Max ammo/Max ammo edit"
 
 var Is_in_esc_menu = false
 
@@ -39,6 +40,7 @@ func _on_Update_settings_pressed():
 	globals.player_mouse_sensitivity = float(player_mouse_sensitivity_edit.get_text())
 	globals.player_base_gravity = int(player_base_gravity_edit.get_text())
 	globals.player_jump_strength = int(player_jump_strength_edit.get_text())
+	globals.max_bullets = int(max_ammo_edit.get_text())
 	emit_signal("update_dev_settings")
 
 func _on_quit_game_pressed():

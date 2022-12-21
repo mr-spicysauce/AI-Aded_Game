@@ -8,7 +8,7 @@ onready var Bullet_direction = get_parent().get_parent().get_node("Bullet direct
 var position
 
 func _input(event):
-	if  globals.Is_in_esc_menu == false and Input.is_action_just_pressed("left_click"):
+	if  globals.Is_in_esc_menu == false and Input.is_action_just_pressed("left_click") and globals.has_bullet == true and globals.is_holding_gun == true:
 		# Spawn the projectile
 		var projectile = projectile_prefab.instance()
 		projectile.translation = get_parent().global_transform.origin

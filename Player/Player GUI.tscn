@@ -1,5 +1,396 @@
-[gd_scene format=2]
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scripts/Player GUI.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/Indulta-SemiSerif-boldFFP.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scripts/ammo counter.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Inv Slot 1.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Inv Slot 2.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Inv Slot 4.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Inv Slot 3.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Inventory.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/Holding what item.gd" type="Script" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+size = 23
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 18
+font_data = ExtResource( 2 )
 
 [node name="GUI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="ammo counter" type="Control" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -600.0
+margin_right = 1024.0
+script = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="ammo counter"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -54.0
+margin_right = 201.0
+color = Color( 0.372549, 0.372549, 0.372549, 1 )
+
+[node name="Label" type="Label" parent="ammo counter/ColorRect"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -99.5
+margin_right = 99.5
+margin_bottom = 33.0
+custom_fonts/font = SubResource( 1 )
+text = "Ammo = 12 / 12"
+
+[node name="Label2" type="Label" parent="ammo counter/ColorRect"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -23.0
+margin_right = 182.0
+custom_fonts/font = SubResource( 2 )
+text = "shotgun Ammo = 30"
+
+[node name="Reload timer" type="Timer" parent="ammo counter"]
+wait_time = 10.0
+one_shot = true
+
+[node name="Inventory" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -165.0
+margin_top = -80.0
+margin_right = 165.0
+script = ExtResource( 8 )
+
+[node name="MarginContainer" type="MarginContainer" parent="Inventory"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Inventory/MarginContainer"]
+margin_right = 324.0
+margin_bottom = 75.0
+custom_constants/separation = 8
+alignment = 1
+
+[node name="Slot 1" type="ColorRect" parent="Inventory/MarginContainer/HBoxContainer"]
+margin_right = 75.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 75, 75 )
+color = Color( 1, 1, 1, 0.392157 )
+script = ExtResource( 4 )
+
+[node name="Topoutline" type="MarginContainer" parent="Inventory/MarginContainer/HBoxContainer/Slot 1"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -39.5
+margin_right = 39.5
+margin_bottom = 2.0
+rect_min_size = Vector2( 79, 2 )
+custom_constants/margin_top = -2
+
+[node name="Topoutline" type="ColorRect" parent="Inventory/MarginContainer/HBoxContainer/Slot 1/Topoutline"]
+show_behind_parent = true
+margin_top = -2.0
+margin_right = 79.0
+margin_bottom = 2.0
+rect_min_size = Vector2( 79, 2 )
+color = Color( 0.713726, 0.713726, 0.713726, 1 )
+
+[node name="Bottomoutline" type="MarginContainer" parent="Inventory/MarginContainer/HBoxContainer/Slot 1"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -39.5
+margin_top = -2.0
+margin_right = 39.5
+rect_min_size = Vector2( 79, 2 )
+custom_constants/margin_bottom = -2
+
+[node name="Bottomoutline" type="ColorRect" parent="Inventory/MarginContainer/HBoxContainer/Slot 1/Bottomoutline"]
+show_behind_parent = true
+margin_right = 79.0
+margin_bottom = 4.0
+rect_min_size = Vector2( 79, 2 )
+color = Color( 0.803922, 0.803922, 0.803922, 1 )
+
+[node name="Rightoutline" type="MarginContainer" parent="Inventory/MarginContainer/HBoxContainer/Slot 1"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -2.0
+margin_top = -39.5
+margin_bottom = 39.5
+rect_min_size = Vector2( 2, 79 )
+custom_constants/margin_right = -2
+
+[node name="Rightoutline" type="ColorRect" parent="Inventory/MarginContainer/HBoxContainer/Slot 1/Rightoutline"]
+show_behind_parent = true
+margin_right = 4.0
+margin_bottom = 79.0
+rect_min_size = Vector2( 2, 79 )
+color = Color( 0.803922, 0.803922, 0.803922, 1 )
+
+[node name="Leftoutline" type="MarginContainer" parent="Inventory/MarginContainer/HBoxContainer/Slot 1"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -39.5
+margin_right = 2.0
+margin_bottom = 39.5
+rect_min_size = Vector2( 2, 79 )
+custom_constants/margin_left = -2
+
+[node name="Leftoutline" type="ColorRect" parent="Inventory/MarginContainer/HBoxContainer/Slot 1/Leftoutline"]
+show_behind_parent = true
+margin_left = -2.0
+margin_right = 2.0
+margin_bottom = 79.0
+rect_min_size = Vector2( 2, 79 )
+color = Color( 0.803922, 0.803922, 0.803922, 1 )
+
+[node name="Slot 2" type="ColorRect" parent="Inventory/MarginContainer/HBoxContainer"]
+margin_left = 83.0
+margin_right = 158.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 75, 75 )
+color = Color( 1, 1, 1, 0.392157 )
+script = ExtResource( 5 )
+
+[node name="Topoutline" type="MarginContainer" parent="Inventory/MarginContainer/HBoxContainer/Slot 2"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -39.5
+margin_right = 39.5
+margin_bottom = 2.0
+rect_min_size = Vector2( 79, 2 )
+custom_constants/margin_top = -2
+
+[node name="Topoutline" type="ColorRect" parent="Inventory/MarginContainer/HBoxContainer/Slot 2/Topoutline"]
+show_behind_parent = true
+margin_top = -2.0
+margin_right = 79.0
+margin_bottom = 2.0
+rect_min_size = Vector2( 79, 2 )
+color = Color( 0.803922, 0.803922, 0.803922, 1 )
+
+[node name="Bottomoutline" type="MarginContainer" parent="Inventory/MarginContainer/HBoxContainer/Slot 2"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -39.5
+margin_top = -2.0
+margin_right = 39.5
+rect_min_size = Vector2( 79, 2 )
+custom_constants/margin_bottom = -2
+
+[node name="Bottomoutline" type="ColorRect" parent="Inventory/MarginContainer/HBoxContainer/Slot 2/Bottomoutline"]
+show_behind_parent = true
+margin_right = 79.0
+margin_bottom = 4.0
+rect_min_size = Vector2( 79, 2 )
+color = Color( 0.803922, 0.803922, 0.803922, 1 )
+
+[node name="Rightoutline" type="MarginContainer" parent="Inventory/MarginContainer/HBoxContainer/Slot 2"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -2.0
+margin_top = -39.5
+margin_bottom = 39.5
+rect_min_size = Vector2( 2, 79 )
+custom_constants/margin_right = -2
+
+[node name="Rightoutline" type="ColorRect" parent="Inventory/MarginContainer/HBoxContainer/Slot 2/Rightoutline"]
+show_behind_parent = true
+margin_right = 4.0
+margin_bottom = 79.0
+rect_min_size = Vector2( 2, 79 )
+color = Color( 0.803922, 0.803922, 0.803922, 1 )
+
+[node name="Leftoutline" type="MarginContainer" parent="Inventory/MarginContainer/HBoxContainer/Slot 2"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -39.5
+margin_right = 2.0
+margin_bottom = 39.5
+rect_min_size = Vector2( 2, 79 )
+custom_constants/margin_left = -2
+
+[node name="Leftoutline" type="ColorRect" parent="Inventory/MarginContainer/HBoxContainer/Slot 2/Leftoutline"]
+show_behind_parent = true
+margin_left = -2.0
+margin_right = 2.0
+margin_bottom = 79.0
+rect_min_size = Vector2( 2, 79 )
+color = Color( 0.803922, 0.803922, 0.803922, 1 )
+
+[node name="Slot 3" type="ColorRect" parent="Inventory/MarginContainer/HBoxContainer"]
+margin_left = 166.0
+margin_right = 241.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 75, 75 )
+rect_pivot_offset = Vector2( -33, 28 )
+color = Color( 1, 1, 1, 0.392157 )
+script = ExtResource( 7 )
+
+[node name="Topoutline" type="MarginContainer" parent="Inventory/MarginContainer/HBoxContainer/Slot 3"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -39.5
+margin_right = 39.5
+margin_bottom = 2.0
+rect_min_size = Vector2( 79, 2 )
+custom_constants/margin_top = -2
+
+[node name="Topoutline" type="ColorRect" parent="Inventory/MarginContainer/HBoxContainer/Slot 3/Topoutline"]
+show_behind_parent = true
+margin_top = -2.0
+margin_right = 79.0
+margin_bottom = 2.0
+rect_min_size = Vector2( 79, 2 )
+color = Color( 0.803922, 0.803922, 0.803922, 1 )
+
+[node name="Bottomoutline" type="MarginContainer" parent="Inventory/MarginContainer/HBoxContainer/Slot 3"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -39.5
+margin_top = -2.0
+margin_right = 39.5
+rect_min_size = Vector2( 79, 2 )
+custom_constants/margin_bottom = -2
+
+[node name="Bottomoutline" type="ColorRect" parent="Inventory/MarginContainer/HBoxContainer/Slot 3/Bottomoutline"]
+show_behind_parent = true
+margin_right = 79.0
+margin_bottom = 4.0
+rect_min_size = Vector2( 79, 2 )
+color = Color( 0.803922, 0.803922, 0.803922, 1 )
+
+[node name="Rightoutline" type="MarginContainer" parent="Inventory/MarginContainer/HBoxContainer/Slot 3"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -2.0
+margin_top = -39.5
+margin_bottom = 39.5
+rect_min_size = Vector2( 2, 79 )
+custom_constants/margin_right = -2
+
+[node name="Rightoutline" type="ColorRect" parent="Inventory/MarginContainer/HBoxContainer/Slot 3/Rightoutline"]
+show_behind_parent = true
+margin_right = 4.0
+margin_bottom = 79.0
+rect_min_size = Vector2( 2, 79 )
+color = Color( 0.803922, 0.803922, 0.803922, 1 )
+
+[node name="Leftoutline" type="MarginContainer" parent="Inventory/MarginContainer/HBoxContainer/Slot 3"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -39.5
+margin_right = 2.0
+margin_bottom = 39.5
+rect_min_size = Vector2( 2, 79 )
+custom_constants/margin_left = -2
+
+[node name="Leftoutline" type="ColorRect" parent="Inventory/MarginContainer/HBoxContainer/Slot 3/Leftoutline"]
+show_behind_parent = true
+margin_left = -2.0
+margin_right = 2.0
+margin_bottom = 79.0
+rect_min_size = Vector2( 2, 79 )
+color = Color( 0.803922, 0.803922, 0.803922, 1 )
+
+[node name="Slot 4" type="ColorRect" parent="Inventory/MarginContainer/HBoxContainer"]
+margin_left = 249.0
+margin_right = 324.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 75, 75 )
+color = Color( 1, 1, 1, 0.392157 )
+script = ExtResource( 6 )
+
+[node name="Topoutline" type="MarginContainer" parent="Inventory/MarginContainer/HBoxContainer/Slot 4"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -39.5
+margin_right = 39.5
+margin_bottom = 2.0
+rect_min_size = Vector2( 79, 2 )
+custom_constants/margin_top = -2
+
+[node name="Topoutline" type="ColorRect" parent="Inventory/MarginContainer/HBoxContainer/Slot 4/Topoutline"]
+show_behind_parent = true
+margin_top = -2.0
+margin_right = 79.0
+margin_bottom = 2.0
+rect_min_size = Vector2( 79, 2 )
+color = Color( 0.803922, 0.803922, 0.803922, 1 )
+
+[node name="Bottomoutline" type="MarginContainer" parent="Inventory/MarginContainer/HBoxContainer/Slot 4"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -39.5
+margin_top = -2.0
+margin_right = 39.5
+rect_min_size = Vector2( 79, 2 )
+custom_constants/margin_bottom = -2
+
+[node name="Bottomoutline" type="ColorRect" parent="Inventory/MarginContainer/HBoxContainer/Slot 4/Bottomoutline"]
+show_behind_parent = true
+margin_right = 79.0
+margin_bottom = 4.0
+rect_min_size = Vector2( 79, 2 )
+color = Color( 0.803922, 0.803922, 0.803922, 1 )
+
+[node name="Rightoutline" type="MarginContainer" parent="Inventory/MarginContainer/HBoxContainer/Slot 4"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -2.0
+margin_top = -39.5
+margin_bottom = 39.5
+rect_min_size = Vector2( 2, 79 )
+custom_constants/margin_right = -2
+
+[node name="Rightoutline" type="ColorRect" parent="Inventory/MarginContainer/HBoxContainer/Slot 4/Rightoutline"]
+show_behind_parent = true
+margin_right = 4.0
+margin_bottom = 79.0
+rect_min_size = Vector2( 2, 79 )
+color = Color( 0.803922, 0.803922, 0.803922, 1 )
+
+[node name="Leftoutline" type="MarginContainer" parent="Inventory/MarginContainer/HBoxContainer/Slot 4"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -39.5
+margin_right = 2.0
+margin_bottom = 39.5
+rect_min_size = Vector2( 2, 79 )
+custom_constants/margin_left = -2
+
+[node name="Leftoutline" type="ColorRect" parent="Inventory/MarginContainer/HBoxContainer/Slot 4/Leftoutline"]
+show_behind_parent = true
+margin_left = -2.0
+margin_right = 2.0
+margin_bottom = 79.0
+rect_min_size = Vector2( 2, 79 )
+color = Color( 0.803922, 0.803922, 0.803922, 1 )
+
+[node name="Holding what item" type="Node" parent="Inventory"]
+script = ExtResource( 9 )
+
+[connection signal="timeout" from="ammo counter/Reload timer" to="ammo counter" method="_on_Reload_timer_timeout"]
