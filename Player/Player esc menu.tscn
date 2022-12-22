@@ -64,7 +64,7 @@ margin_left = 145.65
 margin_top = -12.3842
 margin_right = 220.65
 margin_bottom = 12.6158
-text = "240"
+text = "480"
 
 [node name="Player deceleration" type="Label" parent="Dev settings"]
 margin_left = 8.1895
@@ -107,7 +107,7 @@ margin_left = 145.7
 margin_top = -3.85123
 margin_right = 220.7
 margin_bottom = 21.1488
-text = "-77"
+text = "-154"
 
 [node name="player jump strength" type="Label" parent="Dev settings"]
 margin_left = 5.66962
@@ -121,7 +121,7 @@ margin_left = 146.33
 margin_top = -4.60916
 margin_right = 221.33
 margin_bottom = 20.3908
-text = "100"
+text = "200"
 
 [node name="Update settings" type="Button" parent="Dev settings"]
 margin_left = 343.024

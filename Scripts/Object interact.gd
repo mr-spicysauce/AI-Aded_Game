@@ -50,7 +50,7 @@ func _process(delta):
 
 	if globals.Slot_4_selected == true and globals.Item_In_slot_4 == false:
 		if Input.is_action_just_pressed("E") and can_pick_up == true and is_on_list == true:
-			globals.Item_ID_in_slot_3 = Item_ID_is
+			globals.Item_ID_in_slot_4 = Item_ID_is
 			globals.Item_In_slot_4 = true
 			print("pick up gun")
 			pick_up_body.get_parent().queue_free()

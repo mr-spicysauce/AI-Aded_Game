@@ -2,28 +2,39 @@ extends Node
 
 var test = 5
 var player_velocity
-var player_pos
+var player_pos #(vector 3)
 var Is_in_esc_menu = false
 var player_on_ladder = false
-
-var has_bullet = true
+var spawn_pos
+var has_bullet = false
+var player_rotation
 
 #vars for dev settings menu#
-var player_speed= 240
+var player_speed= 480
 var player_deceleration = 0.9
 var player_mouse_sensitivity = 0.1
-var player_base_gravity = -77
-var player_jump_strength = 100
+var player_base_gravity = -154
+var player_jump_strength = 200
 
 #gun vars
+
+var ammo = 0
+
 var max_bullets = 12
 var fire_rate = null
 var damage = null
 var gun_type = null
-var avalibale_pistol_ammo = null
-var avalibale_rifle_ammo = null
-var avalibale_shotgun_ammo = null
-var avalibale_sniper_ammo = null
+var is_auto_gun = null
+
+var current_pistol_ammo = 0
+var current_rifle_ammo = 0
+var current_shotgun_ammo = 0
+var current_sniper_ammo = 0
+
+var avalibale_pistol_ammo = 64
+var avalibale_rifle_ammo = 90
+var avalibale_shotgun_ammo = 0
+var avalibale_sniper_ammo = 0
 
 var reload_time = null
 
@@ -49,6 +60,7 @@ var Item_ID_in_slot_4 = null
 var is_holding_gun = false
 
 # All item IDs
+var ID_place_holder = "ID_place_holder3453453"
 var ID_1 = "ID_1"
 var ID_2 = "ID_2"
 
@@ -60,15 +72,18 @@ var ItemID = [
 
 #All item ID's that are guns
 var GunItemID = [
+	ID_place_holder,
 	ID_1,
+	ID_2,
+	ID_place_holder,
 ]
 
 var pistolGun = [
-	ID_1
+	ID_1,
 ]
 
 var rifleGun = [
-	
+	ID_2,
 ]
 
 var shotgunGun = [

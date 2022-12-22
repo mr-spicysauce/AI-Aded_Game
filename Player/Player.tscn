@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player esc menu.tscn" type="PackedScene" id=2]
@@ -15,6 +15,13 @@
 [ext_resource path="res://Scripts/Partical cache.gd" type="Script" id=13]
 [ext_resource path="res://Partical meshs/Loading screen.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scripts/Object interact.gd" type="Script" id=15]
+[ext_resource path="res://Scripts/Gun_mesh_holder.gd" type="Script" id=16]
+[ext_resource path="res://Imported objects pt2/Glock17.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Imported objects pt2/AK47.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Imported objects/g17_sdr.material" type="Material" id=19]
+[ext_resource path="res://Imported objects/None.material" type="Material" id=20]
+[ext_resource path="res://Scripts/3d text.gd" type="Script" id=21]
+[ext_resource path="res://Fonts/Indulta-SemiSerif-boldFFP.otf" type="DynamicFontData" id=22]
 
 [sub_resource type="CapsuleShape" id=1]
 height = 2.0
@@ -31,10 +38,6 @@ height = 0.75
 [sub_resource type="CapsuleMesh" id=13]
 mid_height = 0.75
 
-[sub_resource type="PlaneMesh" id=23]
-material = ExtResource( 10 )
-size = Vector2( 0.01, 0.01 )
-
 [sub_resource type="PlaneMesh" id=6]
 material = ExtResource( 3 )
 size = Vector2( 0.01, 0.01 )
@@ -50,6 +53,25 @@ size = Vector2( 0.01, 0.01 )
 [sub_resource type="PlaneMesh" id=8]
 material = ExtResource( 4 )
 size = Vector2( 0.01, 0.01 )
+
+[sub_resource type="PlaneMesh" id=23]
+material = ExtResource( 10 )
+size = Vector2( 0.01, 0.01 )
+
+[sub_resource type="PlaneMesh" id=26]
+material = ExtResource( 19 )
+size = Vector2( 0.01, 0.01 )
+
+[sub_resource type="PlaneMesh" id=27]
+material = ExtResource( 20 )
+size = Vector2( 0.01, 0.01 )
+
+[sub_resource type="ViewportTexture" id=28]
+viewport_path = NodePath("head/Camera/Muli cache/3d text/Viewport")
+
+[sub_resource type="DynamicFont" id=29]
+size = 128
+font_data = ExtResource( 22 )
 
 [sub_resource type="BoxShape" id=4]
 
@@ -93,6 +115,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.95, 0 )
 
 [node name="Camera" type="Camera" parent="head"]
+cull_mask = 1048573
 fov = 100.0
 near = 0.01
 far = 800.0
@@ -100,11 +123,6 @@ far = 800.0
 [node name="Muli cache" type="Spatial" parent="head/Camera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5 )
 script = ExtResource( 13 )
-
-[node name="MeshInstance5" type="MeshInstance" parent="head/Camera/Muli cache"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.011796, 0 )
-mesh = SubResource( 23 )
-material/0 = ExtResource( 10 )
 
 [node name="MeshInstance" type="MeshInstance" parent="head/Camera/Muli cache"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00975752, 0 )
@@ -126,6 +144,21 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0157542, 0 )
 mesh = SubResource( 8 )
 material/0 = null
 
+[node name="MeshInstance5" type="MeshInstance" parent="head/Camera/Muli cache"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.011796, 0 )
+mesh = SubResource( 23 )
+material/0 = ExtResource( 10 )
+
+[node name="MeshInstance6" type="MeshInstance" parent="head/Camera/Muli cache"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00255203, 0 )
+mesh = SubResource( 26 )
+material/0 = null
+
+[node name="MeshInstance7" type="MeshInstance" parent="head/Camera/Muli cache"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.001, 0 )
+mesh = SubResource( 27 )
+material/0 = null
+
 [node name="SlidingParticals" parent="head/Camera/Muli cache" instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 0.98563, 0.168919, 0, -0.168919, 0.98563, 0, 0, 0 )
 
@@ -137,11 +170,58 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0
 [node name="Timer" type="Timer" parent="head/Camera/Muli cache"]
 one_shot = true
 
+[node name="3d text" type="Sprite3D" parent="head/Camera/Muli cache"]
+transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.5, 0, 0, 0 )
+pixel_size = 0.0218
+billboard = 1
+texture = SubResource( 28 )
+
+[node name="Viewport" type="Viewport" parent="head/Camera/Muli cache/3d text"]
+size = Vector2( 1540, 160 )
+transparent_bg = true
+render_target_v_flip = true
+script = ExtResource( 21 )
+
+[node name="Label" type="Label" parent="head/Camera/Muli cache/3d text/Viewport"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 29 )
+text = "Press \"E\" to pick up gun"
+
+[node name="ViewportContainer" type="ViewportContainer" parent="head/Camera"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Viewport" type="Viewport" parent="head/Camera/ViewportContainer"]
+size = Vector2( 1920, 1080 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Gun cam" type="Camera" parent="head/Camera/ViewportContainer/Viewport"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.95, 0 )
+cull_mask = 2
+fov = 100.0
+near = 0.01
+far = 800.0
+
 [node name="Bullet holder" type="Spatial" parent="head"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7 )
 
 [node name="Gun" type="Node" parent="head/Bullet holder"]
 script = ExtResource( 6 )
+
+[node name="Gun_mesh_holder" type="Spatial" parent="head"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.95, 0 )
+script = ExtResource( 16 )
+
+[node name="Glock17" parent="head/Gun_mesh_holder" instance=ExtResource( 17 )]
+transform = Transform( 0.241249, -0.0154486, -0.0637217, 0.00429682, 0.246164, -0.043412, 0.0654267, 0.0407972, 0.237813, 1.25, 2, -1.5 )
+visible = false
+
+[node name="AK47_mesh+anim" parent="head/Gun_mesh_holder" instance=ExtResource( 18 )]
+transform = Transform( -0.342175, -0.546042, -7.47227, -0.200652, 7.47804, -0.537275, 7.4895, 0.175398, -0.355781, 0.734, 1.62, -1.722 )
+visible = false
 
 [node name="Bullet direction" type="Spatial" parent="head"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5 )
@@ -149,6 +229,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5 )
 [node name="SpeedParticals" parent="head" instance=ExtResource( 11 )]
 
 [node name="HeadTween" type="Tween" parent="head"]
+
+[node name="spawn_pos" type="Spatial" parent="head"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5 )
 
 [node name="wall_run time out" type="Timer" parent="."]
 wait_time = 2.0
@@ -217,6 +300,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 [node name="Node2D" type="Node2D" parent="CanvasLayer"]
 
 [connection signal="timeout" from="head/Camera/Muli cache/Timer" to="head/Camera/Muli cache" method="_on_Timer_timeout"]
+[connection signal="shot_fired" from="head/Bullet holder/Gun" to="head/Gun_mesh_holder" method="_on_Gun_shot_fired"]
 [connection signal="timeout" from="wall_run time out" to="." method="_on_wall_run_time_out_timeout"]
 [connection signal="timeout" from="Slide_time time out" to="." method="_on_Slide_time_time_out_timeout"]
 [connection signal="body_entered" from="Right_collision" to="." method="_on_Right_collision_body_entered"]

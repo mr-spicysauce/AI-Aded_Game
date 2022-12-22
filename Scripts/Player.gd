@@ -1,7 +1,10 @@
 extends KinematicBody
 
 # Declare variables for movement speed and deceleration
-var speed = 230
+
+var base_speed = 460
+
+var speed = 460
 
 var base_deceleration = 0.9
 
@@ -32,13 +35,13 @@ var sensitivity = 0.1
 var velocity = Vector3()
 
 # Gravitational acceleration applied to the character
-var base_gravity = -77
+var base_gravity = -154
 
 #
 var gravity = -50
 
 # Add a jump strength variable
-var jump_strength = 100
+var jump_strength = 200
 
 #
 var can_wall_run = true
@@ -80,13 +83,13 @@ var slide_duration = 0.5
 var is_crouching
 
 # The intensity of the camera shake
-var shake_intensity = 0.25
+var shake_intensity = 0.1
 
 # A timer to control the duration of the shake
 var shake_timer = 0
 
 # The maximum duration of the shake, in seconds
-var shake_duration = 0.05
+var shake_duration = 0.01
 
 var shake = false
 
@@ -112,6 +115,7 @@ func update_wall_run_time(delta):
 			wall_run_time = 0
 
 func _physics_process(delta):
+	
 	deceleration = clamp(deceleration, base_deceleration, 0.94)
 	var aim = head.get_global_transform().basis
 	var forward = -aim.z
@@ -185,8 +189,10 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("Ctrl") and is_sliding == false:
 		is_crouching = true
-	else:
+		speed = base_speed / 3
+	else: 
 		is_crouching = false
+		speed = base_speed
 	
 	if is_crouching == true:
 		head.translation = $CrouchHeadpos.transform.origin
@@ -218,6 +224,7 @@ func _physics_process(delta):
 	# Move the player by the current velocity
 	move_and_slide(velocity, Vector3.UP)
 	
+	global_vars.spawn_pos = $head/spawn_pos.global_transform.origin
 	global_vars.player_pos = global_transform.origin
 	
 	# check if player is on wall
@@ -257,6 +264,7 @@ func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		# Rotate the player around the y-axis based on the mouse movement
 		rotate_y(deg2rad(-event.relative.x * sensitivity))
+		global_vars.player_rotation = rotation
 
 		# Rotate the player's head around the x-axis based on the mouse movement, reversing the direction of the y-axis
 		head.rotate_x(deg2rad(-event.relative.y * sensitivity))
@@ -280,13 +288,13 @@ func _on_Left_collision_body_exited(body):
 	object_on_left = false
 
 func _on_Player_esc_menu_update_dev_settings():
-	speed = global_vars.player_speed
+	base_speed = global_vars.player_speed
 	deceleration = global_vars.player_deceleration
 	sensitivity = global_vars.player_mouse_sensitivity
 	base_gravity = global_vars.player_base_gravity
 	jump_strength = global_vars.player_jump_strength
 	
-	print(speed)
+	print(base_speed)
 	print(deceleration)
 	print(sensitivity)
 	print(base_gravity)
@@ -306,3 +314,8 @@ func shake():
 
 func _on_glass_thing_player_smash_glass():
 	shake = true
+
+func _process(delta):
+		$"head/Camera/ViewportContainer/Viewport/Gun cam".global_transform = $"head/Camera".global_transform
+		var gun_cam_size = OS.get_window_size()
+		$head/Camera/ViewportContainer/Viewport.size = gun_cam_size

@@ -5,6 +5,8 @@ onready var projectile_prefab = preload("res://Player/Bullet.tscn")
 onready var globals = get_node("/root/Globals")
 onready var Bullet_direction = get_parent().get_parent().get_node("Bullet direction")
 
+signal shot_fired
+
 var position
 
 func _input(event):
@@ -18,3 +20,4 @@ func _input(event):
 		# Set the projectile's velocity in the direction the player is facing
 		var direction = Bullet_direction.global_transform.origin - position
 		projectile.apply_central_impulse(direction * 200)
+		emit_signal("shot_fired")
