@@ -1,7 +1,7 @@
 ==========About==========
 =
 
-**I have stop this project as it was only going to be a test for what the AI can do and I have moved onto other things**
+**I have stop this project (fornow) as it was only going to be a test for what the AI can do and I have moved onto other things (fornow)**
 
 This is an AI aided game as I can not code at all.
 
